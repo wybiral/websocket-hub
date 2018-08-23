@@ -32,12 +32,17 @@ type App struct {
 	Server *http.Server
 }
 
-// New returns a new App with server ready to listen on addr.
-func New(addr string) *App {
+// New returns a new App with server ready to listen on addr and serve optional
+// public directory dir.
+func New(addr, dir string) *App {
 	a := &App{}
 	a.Hub = hub.New()
 	r := mux.NewRouter().StrictSlash(true)
-	r.HandleFunc("/", a.socketHandler).Methods("GET")
+	r.HandleFunc("/socket", a.socketHandler).Methods("GET")
+	if dir != "" {
+		fs := http.FileServer(http.Dir(dir))
+		r.PathPrefix("/").Handler(fs)
+	}
 	a.Server = &http.Server{
 		Addr:    addr,
 		Handler: r,
