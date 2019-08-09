@@ -7,7 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
-	"github.com/wybiral/hub/pkg/hub"
+	"github.com/wybiral/websocket-hub/pkg/hub"
 )
 
 // WebSocket upgrader

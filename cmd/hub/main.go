@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/wybiral/hub/internal/app"
+	"github.com/wybiral/websocket-hub/internal/app"
 )
 
 // Current hub version
